@@ -9,10 +9,8 @@ struct STUDENT_DATA {
     std::string lastName;
 };
 
-
 int main() {
     std::vector<STUDENT_DATA> students;
-
     std::ifstream inputFile("StudentData.txt");
 
     if (inputFile.is_open()) {
@@ -39,7 +37,12 @@ int main() {
         }
         inputFile.close();
 
-        std::cout << "Successfully loaded " << students.size() << " students." << std::endl;
+        #ifdef _DEBUG
+        std::cout << "Debug Printing Student Data" << std::endl;
+        for (const auto& student : students) {
+            std::cout << student.firstName << " " << student.lastName << std::endl;
+        }
+        #endif
 
     }
     else {
